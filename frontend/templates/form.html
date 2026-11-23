@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{{ action }} Game</h2>
+
+<form method="post">
+    <label>Title
+        <input type="text" name="title" required value="{{ game.title if game else '' }}">
+    </label>
+    <label>Platform
+        <input type="text" name="platform" required value="{{ game.platform if game else '' }}">
+    </label>
+    <label>Hours played
+        <input type="number" name="hours_played" step="0.1" min="0"
+               value="{{ game.hours_played if game else 0 }}">
+    </label>
+    <label>
+        <input type="checkbox" name="completed" {{ "checked" if game and game.completed else "" }}>
+        Completed
+    </label>
+    <button type="submit">{{ action }}</button>
+    <a class="btn" href="{{ url_for('index') }}">Cancel</a>
+</form>
+{% endblock %}
